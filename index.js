@@ -2,7 +2,7 @@ import { AtpAgent } from "@atproto/api";
 import * as dotenv from "dotenv";
 import { scheduleJob } from "node-schedule";
 import * as process from "node:process";
-import { get } from "superagent";
+import * as superagent from "superagent";
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ async function start() {
 		password: process.env.BLUESKY_PASSWORD,
 	});
 
-	get("https://betterbluesky.nemtudo.me/api/trends")
+	superagent.get("https://betterbluesky.nemtudo.me/api/trends")
 		.end(async (err, res) => {
 			if (err) return 0;
 
@@ -38,6 +38,10 @@ async function start() {
 		});
 }
 
+console.log("✅ [GATEWAY] • Iniciado");
+
 scheduleJob("*/30 * * * *", async () => {
+	console.log("❇️ [GATEWAY] • Reproduzindo novo post");
 	start();
+	console.log("✅ [GATEWAY] • Reproduzido com sucesso");
 });
