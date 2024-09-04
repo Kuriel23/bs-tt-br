@@ -1,7 +1,8 @@
 import { AtpAgent } from "@atproto/api";
 import * as dotenv from "dotenv";
+import { scheduleJob } from "node-schedule";
 import * as process from "node:process";
-import superagent from "superagent";
+import { get } from "superagent";
 
 dotenv.config();
 
@@ -15,8 +16,7 @@ async function start() {
 		password: process.env.BLUESKY_PASSWORD,
 	});
 
-	superagent
-		.get("https://betterbluesky.nemtudo.me/api/trends")
+	get("https://betterbluesky.nemtudo.me/api/trends")
 		.end(async (err, res) => {
 			if (err) return 0;
 
@@ -38,5 +38,6 @@ async function start() {
 		});
 }
 
-start();
-setInterval(() => start(), 1800000);
+scheduleJob("*/30 * * * *", async () => {
+	start();
+});
