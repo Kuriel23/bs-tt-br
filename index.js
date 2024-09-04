@@ -2,7 +2,7 @@ import { AtpAgent } from "@atproto/api";
 import * as dotenv from "dotenv";
 import { scheduleJob } from "node-schedule";
 import * as process from "node:process";
-import * as superagent from "superagent";
+import superagent from "superagent";
 
 dotenv.config();
 
