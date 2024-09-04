@@ -9,7 +9,7 @@ const agent = new AtpAgent({
 	service: "https://bsky.social",
 });
 
-setInterval(async () => {
+async function start() {
 	await agent.login({
 		identifier: process.env.BLUESKY_USERNAME,
 		password: process.env.BLUESKY_PASSWORD,
@@ -36,4 +36,6 @@ setInterval(async () => {
 					return console.log(err);
 				});
 		});
-}, 1800000);
+}
+setInterval(start(), 1800000);
+start();
