@@ -1,10 +1,11 @@
 {
 	"type": "module",
 	"name": "bs-tt-br",
-	"author": { "name": "KurielDev" },
+	"author": {
+		"name": "KurielDev"
+	},
 	"dependencies": {
 		"@atproto/api": "^0.13.6",
-		"cron": "^3.1.7",
 		"dotenv": "^16.4.5",
 		"superagent": "^10.1.0"
 	}

@@ -1,6 +1,5 @@
 import { AtpAgent } from "@atproto/api";
 import * as dotenv from "dotenv";
-import { CronJob } from "cron";
 import * as process from "node:process";
 import superagent from "superagent";
 
@@ -10,7 +9,7 @@ const agent = new AtpAgent({
 	service: "https://bsky.social",
 });
 
-async function main() {
+setInterval(async () => {
 	await agent.login({
 		identifier: process.env.BLUESKY_USERNAME,
 		password: process.env.BLUESKY_PASSWORD,
@@ -37,12 +36,4 @@ async function main() {
 					return console.log(err);
 				});
 		});
-}
-
-main();
-
-const scheduleExpression = "0 * */30 * *";
-
-const job = new CronJob(scheduleExpression, main);
-
-job.start();
+}, 1800000);
