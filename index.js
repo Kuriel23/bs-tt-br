@@ -37,5 +37,6 @@ async function start() {
 				});
 		});
 }
-setInterval(start(), 1800000);
+
 start();
+setInterval(() => start(), 1800000);
