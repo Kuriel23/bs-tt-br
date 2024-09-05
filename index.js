@@ -24,11 +24,11 @@ async function start() {
 			await agent
 				.post({
 					text: `🛫 ${res.body.head.length > 10 ? "10" : res.body.head.length} TRENDING TOPICS PARA VOCÊ ACOMPANHAR:\n\n${res.body.data
-						.slice(0, 10)
 						.sort((a, b) => b.count - a.count)
+						.slice(0, 10)
 						.map(
 							(element, i) =>
-								`${i + 1}. ${element.text} - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts`,
+								`${i + 1}. ${element.text} - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)}`,
 						)
 						.join("\n")}`,
 					langs: ["pt"],
