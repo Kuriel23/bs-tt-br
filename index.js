@@ -16,21 +16,25 @@ async function start() {
 		password: process.env.BLUESKY_PASSWORD,
 	});
 
-	superagent.get("https://betterbluesky.nemtudo.me/api/trends")
+	superagent
+		.get("https://betterbluesky.nemtudo.me/api/trends")
 		.end(async (err, res) => {
 			if (err) return 0;
 
 			await agent
 				.post({
-					text: `🛫 ${res.body.head.length > 10 ? "10" : res.body.head.length} TRENDING TOPICS PRA VOCÊ ACOMPANHAR:\n\n${res.body.data
+					text: `🛫 ${res.body.head.length > 10 ? "10" : res.body.head.length} TRENDING TOPICS PARA VOCÊ ACOMPANHAR:\n\n${res.body.data
 						.slice(0, 10)
 						.sort((a, b) => b.count - a.count)
 						.map(
 							(element, i) =>
-								`${i + 1}. ${element.text} - ${Math.round(element.count)} posts`,
+								`${i + 1}. ${element.text} - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts`,
 						)
 						.join("\n")}`,
 					langs: ["pt"],
+				})
+				.then(async (element) => {
+					await agent.like(element.uri, element.cid);
 				})
 				.catch((err) => {
 					return console.log(err);
