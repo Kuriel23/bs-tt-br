@@ -6,7 +6,9 @@ import * as process from "node:process";
 
 dotenv.config();
 
-const agent = new Bot({ langs: ["pt"] }).login({
+const agent = new Bot({ langs: ["pt"] });
+
+agent.login({
 	identifier: process.env.BLUESKY_USERNAME,
 	password: process.env.BLUESKY_PASSWORD,
 });
