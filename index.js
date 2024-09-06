@@ -48,7 +48,7 @@ function start() {
 									: richText.text(element.text);
 
 							return richText.text(
-								`- ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+								` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
 							);
 						});
 						richText.text("++");
@@ -83,7 +83,7 @@ function start() {
 											: richText2.text(element.text);
 
 									return richText2.text(
-										`- ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+										` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
 									);
 								});
 								await element
