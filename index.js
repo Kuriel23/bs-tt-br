@@ -39,13 +39,13 @@ function start() {
 							richText.text(`${i + 1}. `);
 
 							element.text.startsWith("#")
-								? richText.tag(element.text)
+								? richText.tag(element.text.replace("\n", ""))
 								: element.text.startsWith("@")
 									? richText.link(
-											element.text,
+											element.text.replace("\n", ""),
 											`https://bsky.app/profile/${element.text.replace("@", "")}`,
 										)
-									: richText.text(element.text);
+									: richText.text(element.text.replace("\n", ""));
 
 							return richText.text(
 								` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
@@ -74,13 +74,13 @@ function start() {
 									richText2.text(`${i + 6}. `);
 
 									element.text.startsWith("#")
-										? richText2.tag(element.text)
+										? richText2.tag(element.text.replace("\n", ""))
 										: element.text.startsWith("@")
 											? richText2.link(
-													element.text,
+													element.text.replace("\n", ""),
 													`https://bsky.app/profile/${element.text.replace("@", "")}`,
 												)
-											: richText2.text(element.text);
+											: richText2.text(element.text.replace("\n", ""));
 
 									return richText2.text(
 										` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
