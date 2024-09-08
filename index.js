@@ -61,7 +61,7 @@ function start() {
 										data: new Blob([buffer], { type: "image/png" }),
 										aspectRatio: {
 											width: 800,
-											height: 1900,
+											height: 400 + (res.data.head.length > 10 ? 10 : res.data.head.length) * 160,
 										},
 									},
 								],
@@ -104,7 +104,7 @@ function start() {
 
 console.log("✅ [GATEWAY] • Iniciado");
 
-scheduleJob("*/30 * * * *", async () => {
+scheduleJob("*/10 * * * *", async () => {
 	console.log("❇️ [GATEWAY] • Reproduzindo novo post");
 	start();
 });
