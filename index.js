@@ -57,7 +57,7 @@ function start() {
 								text: richText,
 								images: [
 									{
-										alt: "10 tendências/hashtags/palavras listadas por imagem.",
+										alt: "10 tendências/hashtags/palavras mais comentadas listadas por imagem.",
 										data: new Blob([buffer], { type: "image/png" }),
 										aspectRatio: {
 											width: 800,
