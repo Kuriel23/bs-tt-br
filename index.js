@@ -115,7 +115,9 @@ function start() {
 
 console.log("✅ [GATEWAY] • Iniciado");
 
-scheduleJob("*/10 * * * *", async () => {
-	console.log("❇️ [GATEWAY] • Reproduzindo novo post");
-	start();
-});
+if (process.env.status === "local") start();
+else
+	scheduleJob("*/10 * * * *", async () => {
+		console.log("❇️ [GATEWAY] • Reproduzindo novo post");
+		start();
+	});
