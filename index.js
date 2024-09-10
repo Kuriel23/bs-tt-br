@@ -115,9 +115,7 @@ function start() {
 
 console.log("✅ [GATEWAY] • Iniciado");
 
-start();
-
 scheduleJob("*/10 * * * *", async () => {
 	console.log("❇️ [GATEWAY] • Reproduzindo novo post");
-	//	start();
+	start();
 });
