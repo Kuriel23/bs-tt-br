@@ -47,8 +47,11 @@ function start() {
 										)
 									: richText.text(element.text.replace("\n", ""));
 
-							return richText.text(
-								` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+							return (
+								element.count !== 0 &&
+								richText.text(
+									` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+								)
 							);
 						});
 						richText.text("++");
@@ -61,7 +64,12 @@ function start() {
 										data: new Blob([buffer], { type: "image/png" }),
 										aspectRatio: {
 											width: 800,
-											height: 400 + (res.data.head.length > 10 ? 10 : res.data.head.length) * 160,
+											height:
+												400 +
+												(res.data.head.length > 10
+													? 10
+													: res.data.head.length) *
+													160,
 										},
 									},
 								],
@@ -82,8 +90,11 @@ function start() {
 												)
 											: richText2.text(element.text.replace("\n", ""));
 
-									return richText2.text(
-										` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+									return (
+										element.count !== 0 &&
+										richText2.text(
+											` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+										)
 									);
 								});
 								await element
@@ -104,7 +115,9 @@ function start() {
 
 console.log("✅ [GATEWAY] • Iniciado");
 
+start();
+
 scheduleJob("*/10 * * * *", async () => {
 	console.log("❇️ [GATEWAY] • Reproduzindo novo post");
-	start();
+	//	start();
 });
