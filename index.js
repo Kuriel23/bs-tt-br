@@ -33,10 +33,10 @@ function start() {
 					.then(async (response) => {
 						const buffer = Buffer.from(response.data, "base64");
 						const richText = new RichText().text(
-							`🛫 ${res.data.head.length > 10 ? "10" : res.data.head.length} TRENDING TOPICS PARA VOCÊ ACOMPANHAR:\n\n`,
+							`🛫 ${res.data.head.length > 10 ? "10" : res.data.head.length} TRENDING TOPICS PARA VOCÊ ACOMPANHAR:\n`,
 						);
 						res.data.data.slice(0, 5).map((element, i) => {
-							richText.text(`${i + 1}. `);
+							richText.text(`\n${i + 1}. `);
 
 							element.text.startsWith("#")
 								? richText.tag(element.text.replace("\n", ""))
@@ -50,11 +50,11 @@ function start() {
 							return (
 								element.count !== 0 &&
 								richText.text(
-									` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+									` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts`,
 								)
 							);
 						});
-						richText.text("++");
+						richText.text("\n++");
 						await agent
 							.post({
 								text: richText,
@@ -79,7 +79,7 @@ function start() {
 
 								const richText2 = new RichText();
 								res.data.data.slice(5, 10).map((element, i) => {
-									richText2.text(`${i + 6}. `);
+									richText2.text(`\n${i + 6}. `);
 
 									element.text.startsWith("#")
 										? richText2.tag(element.text.replace("\n", ""))
@@ -93,7 +93,7 @@ function start() {
 									return (
 										element.count !== 0 &&
 										richText2.text(
-											` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts\n`,
+											` - ${new Intl.NumberFormat("en", { notation: "compact" }).format(element.count)} posts`,
 										)
 									);
 								});
