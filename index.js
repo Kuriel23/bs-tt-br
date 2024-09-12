@@ -45,7 +45,10 @@ function start() {
 											element.text.replace("\n", ""),
 											`https://bsky.app/profile/${element.text.replace("@", "")}`,
 										)
-									: richText.text(element.text.replace("\n", ""));
+									: richText.link(
+											element.text.replace("\n", ""),
+											`https://bs-redirect.onrender.com/search/${encodeURI(element.text.replace("\n", ""))}`,
+										);
 
 							return (
 								element.count !== 0 &&
@@ -88,7 +91,10 @@ function start() {
 													element.text.replace("\n", ""),
 													`https://bsky.app/profile/${element.text.replace("@", "")}`,
 												)
-											: richText2.text(element.text.replace("\n", ""));
+											: richText2.link(
+													element.text.replace("\n", ""),
+													`https://bs-redirect.onrender.com/search/${encodeURI(element.text.replace("\n", ""))}`,
+												);
 
 									return (
 										element.count !== 0 &&
